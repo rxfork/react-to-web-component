@@ -42,7 +42,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@rxfork/core": "^1.0.0"
+    "@rxfork/r2wc-core": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^17.0.0",

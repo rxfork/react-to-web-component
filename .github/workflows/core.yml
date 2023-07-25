@@ -1,4 +1,4 @@
-name: "@rxfork/core"
+name: "@rxfork/r2wc-core"
 
 on:
   push:

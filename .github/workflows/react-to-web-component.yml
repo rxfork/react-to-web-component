@@ -1,4 +1,4 @@
-name: "@rxfork/react-to-web-component"
+name: "@rxfork/r2wc-react-to-web-component"
 
 on:
   push:
