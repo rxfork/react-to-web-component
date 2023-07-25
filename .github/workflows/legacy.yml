@@ -1,7 +1,7 @@
 name: "react-to-webcomponent"
 
 on:
-  push:
+  # push:
   workflow_dispatch:
     inputs:
       segment:
