@@ -10,7 +10,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["@r2wc/core"],
+      external: ["@rxfork/core"],
     },
   },
   plugins: [dts()],

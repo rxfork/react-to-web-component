@@ -1,6 +1,6 @@
-import type { R2WCOptions } from "@r2wc/core"
+import type { R2WCOptions } from "@rxfork/core"
 
-import r2wcCore from "@r2wc/core"
+import r2wcCore from "@rxfork/core"
 
 interface ReactType {
   createElement: (type: any, data: any, children?: any) => React.ReactElement

@@ -1,8 +1,8 @@
 # React to Web Component
 
-`@r2wc/react-to-web-component` converts [React](https://reactjs.org/) components to [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)! It lets you share React components as native elements that **don't** require mounted being through React. The custom element acts as a wrapper for the underlying React component. Use these custom elements with any project that uses HTML even in any framework (vue, svelte, angular, ember, canjs) the same way you would use standard HTML elements.
+`@rxfork/react-to-web-component` converts [React](https://reactjs.org/) components to [custom elements](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements)! It lets you share React components as native elements that **don't** require mounted being through React. The custom element acts as a wrapper for the underlying React component. Use these custom elements with any project that uses HTML even in any framework (vue, svelte, angular, ember, canjs) the same way you would use standard HTML elements.
 
-`@r2wc/react-to-web-component`:
+`@rxfork/react-to-web-component`:
 
 - Works in all modern browsers. (Edge needs a [customElements polyfill](https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements)).
 - Is `1.11KB` minified and gzipped.
@@ -29,7 +29,7 @@ const Greeting = () => {
 With our React component complete, all we have to do is call `r2wc` and [customElements.define](https://developer.mozilla.org/en-US/docs/Web/API/CustomElementRegistry/define) to create and define our custom element:
 
 ```js
-import r2wc from "@r2wc/react-to-web-component"
+import r2wc from "@rxfork/react-to-web-component"
 
 const WebGreeting = r2wc(Greeting)
 
@@ -86,7 +86,7 @@ We also have a [complete example using a third party library](docs/complete-exam
 To install from npm:
 
 ```
-npm install @r2wc/react-to-web-component
+npm install @rxfork/react-to-web-component
 ```
 
 ## External Examples

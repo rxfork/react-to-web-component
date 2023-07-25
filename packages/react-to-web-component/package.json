@@ -1,5 +1,5 @@
 {
-  "name": "@r2wc/react-to-web-component",
+  "name": "@rxfork/react-to-web-component",
   "version": "2.0.2",
   "description": "Convert React components to native Web Components.",
   "homepage": "https://www.bitovi.com/frontend-javascript-consulting/react-consulting",
@@ -42,7 +42,7 @@
     "build": "vite build"
   },
   "dependencies": {
-    "@r2wc/core": "^1.0.0"
+    "@rxfork/core": "^1.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.0",

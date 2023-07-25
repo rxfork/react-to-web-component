@@ -1,10 +1,10 @@
-import type { R2WCOptions } from "@r2wc/core"
+import type { R2WCOptions } from "@rxfork/core"
 import type { Root } from "react-dom/client"
 
 import React from "react"
 import { createRoot } from "react-dom/client"
 
-import r2wcCore from "@r2wc/core"
+import r2wcCore from "@rxfork/core"
 
 interface Context<Props extends object> {
   root: Root
