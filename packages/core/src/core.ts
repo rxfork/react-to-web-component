@@ -99,6 +99,8 @@ export default function r2wc<Props, Context>(
         if (value && transform?.parse) {
           //@ts-ignore
           this[propsSymbol][prop] = transform.parse(value, this)
+        } else {
+          this[renderSymbol]()
         }
       }
     }
