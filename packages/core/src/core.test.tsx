@@ -214,4 +214,54 @@ describe("core", () => {
     expect(element).not.toBeVisible()
     expect(body.querySelector("#test-button-id")).toBe(element)
   })
+
+  test("object prop type as function", async () => {
+    interface Props {
+      objectProp: () => void
+    }
+
+    function ButtonWithObjectPropType({ objectProp }: Props) {
+      return <button>foo</button>
+    }
+
+    const ButtonElement = r2wc(
+      ButtonWithObjectPropType,
+      {
+        props: {
+          objectProp: "object",
+        },
+      },
+      { mount, unmount, update },
+    )
+
+    function newFunc() {
+      //@ts-ignore
+      expect(this).toBe(document.querySelector("test-button-element-property"))
+    }
+
+    customElements.define("test-button-object-property", ButtonElement)
+
+    const body = document.body
+    body.innerHTML = `<test-button-element-property>
+                      </test-button-element-property>`
+
+    const element = body.querySelector(
+      "test-button-element-property",
+    ) as HTMLElement & Props
+
+    element.objectProp = () => {
+      expect(true).toBe(true)
+      return true
+    }
+
+    await wait()
+
+    expect(element.objectProp()).toBe(true)
+
+    //@ts-ignore
+    element.objectProp = newFunc
+
+    await wait()
+    expect(element.getAttribute("object-prop")).toBe(null)
+  })
 })

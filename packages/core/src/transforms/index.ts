@@ -3,7 +3,7 @@ import number from "./number"
 import boolean from "./boolean"
 import function_ from "./function"
 import json from "./json"
-import object_ from "./callback"
+import object_ from "./object"
 
 export interface Transform<Type> {
   stringify?: (value: Type) => string

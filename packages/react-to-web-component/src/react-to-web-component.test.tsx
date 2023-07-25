@@ -221,6 +221,7 @@ describe("react-to-web-component 1", () => {
         falseProp: "boolean",
         arrayProp: "json",
         objProp: "json",
+        objectProp: "object",
       },
     })
 
@@ -246,6 +247,12 @@ describe("react-to-web-component 1", () => {
     `
 
     await flushPromises()
+
+    document.getElementsByTagName("attr-type-casting").objectProp = {
+      foo: "abc",
+      bar: [2, 3],
+    }
+
     const {
       stringProp,
       numProp,
@@ -254,6 +261,7 @@ describe("react-to-web-component 1", () => {
       falseProp,
       arrayProp,
       objProp,
+      objectProp,
     } = global.castedValues
     expect(stringProp).toEqual("iloveyou")
     expect(numProp).toEqual(360)
@@ -266,6 +274,9 @@ describe("react-to-web-component 1", () => {
     expect(arrayProp[2]).toEqual("👽")
     expect(arrayProp[3].aliens).toEqual("welcome")
     expect(objProp.very).toEqual("object")
+    expect(objProp.such).toEqual("wow!")
+    expect(objectProp.foo).toEqual("abc")
+    expect(objectProp.bar).toEqual([2, 3])
     expect(objProp.such).toEqual("wow!")
   })
 
