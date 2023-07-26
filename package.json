@@ -5,6 +5,7 @@
   ],
   "private": true,
   "scripts": {
+    "nx": "nx",
     "check-packages": "ts-node ./scripts/check-packages"
   },
   "eslintConfig": {
@@ -21,7 +22,7 @@
     "depcheck": "^1.4.3",
     "eslint": "^8.25.0",
     "jsdom": "^22.0.0",
-    "nx": "15.9.2",
+    "nx": "^16.5.5",
     "prettier": "^2.7.1",
     "semver": "^7.5.0",
     "ts-node": "^10.9.1",
