@@ -216,6 +216,8 @@ describe("core", () => {
   })
 
   test("object prop type as function", async () => {
+    expect.assertions(4)
+
     interface Props {
       objectProp: () => void
     }
@@ -260,6 +262,7 @@ describe("core", () => {
 
     //@ts-ignore
     element.objectProp = newFunc
+    element.objectProp()
 
     await wait()
     expect(element.getAttribute("object-prop")).toBe(null)
