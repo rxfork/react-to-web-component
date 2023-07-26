@@ -6,7 +6,7 @@ import dts from "vite-plugin-dts"
 export default defineConfig({
   build: {
     lib: {
-      filename: "react-to-web-component",
+      fileName: "react-to-web-component",
       entry: "src/react-to-web-component.ts",
       formats: ["es", "cjs"],
     },
