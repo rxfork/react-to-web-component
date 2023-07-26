@@ -2,7 +2,7 @@ import type { R2WCType } from "./transforms"
 
 import transforms from "./transforms"
 
-type PropName<Props> = Extract<keyof Props, string>
+type PropName<Props> = Extract<keyof Props, "string">
 type PropNames<Props> = Array<PropName<Props>>
 
 export interface R2WCOptions<Props> {
