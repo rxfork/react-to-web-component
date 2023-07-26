@@ -6,6 +6,7 @@ import dts from "vite-plugin-dts"
 export default defineConfig({
   build: {
     lib: {
+      fileName: "core",
       entry: "src/core.ts",
       formats: ["es", "cjs"],
     },
