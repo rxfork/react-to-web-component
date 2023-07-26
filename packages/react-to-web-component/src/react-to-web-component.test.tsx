@@ -269,6 +269,96 @@ describe("react-to-web-component 1", () => {
     expect(objProp.such).toEqual("wow!")
   })
 
+  it("props type as object and function render in component", async () => {
+    expect.assertions(4)
+
+    type ObjectComponentProps = {
+      handleClick: (selected?: string) => void
+      objectProp: { foo?: string; bar?: number[] }
+    }
+
+    function ObjectComponent({
+      objectProp = {},
+      handleClick = () => {
+        expect("default handleClick was called").toEqual(
+          "which should not happen",
+        )
+      },
+    }: ObjectComponentProps) {
+      return (
+        <button
+          onClick={() => {
+            handleClick(objectProp.foo)
+          }}
+        >
+          {objectProp?.bar?.join(",")}
+        </button>
+      )
+    }
+
+    const ObjectComponentPropDef = r2wc(ObjectComponent, {
+      props: {
+        objectProp: "object",
+        handleClick: "object",
+      },
+    })
+
+    customElements.define("object-component", ObjectComponentPropDef)
+
+    const body = document.body
+
+    console.error = function (...messages) {
+      // propTypes will throw if any of the types passed into the underlying react component are wrong or missing
+      expect("propTypes should not have thrown").toEqual(messages.join(""))
+    }
+
+    body.innerHTML = `
+      <object-component>
+      </object-component>
+    `
+
+    await flushPromises()
+
+    // @ts-expect-error
+    document.getElementsByTagName("object-component")[0].objectProp = {
+      foo: "abc",
+      bar: [2, 3],
+    }
+
+    // @ts-expect-error
+    const { objectProp } = document.getElementsByTagName("object-component")[0]
+    expect(objectProp.foo).toEqual("abc")
+    expect(objectProp.bar).toEqual([2, 3])
+
+    await new Promise((r) => {
+      const failUnlessCleared = setTimeout(() => {
+        expect(
+          "handleClick was not called to clear the failure timeout",
+        ).toEqual(
+          "not to fail because globalFn should have been called to clear the failure timeout",
+        )
+        r(true)
+      }, 1000)
+
+      // @ts-expect-error
+      document.getElementsByTagName("object-component")[0].handleClick = (
+        selected: string,
+      ) => {
+        clearTimeout(failUnlessCleared)
+        expect(selected).toEqual("abc")
+        r(true)
+      }
+
+      setTimeout(() => {
+        const button = document.querySelector(
+          "object-component button:last-child",
+        ) as HTMLButtonElement
+        expect(button.textContent).toBe("2,3")
+        button.click()
+      }, 0)
+    })
+  })
+
   it("Props typed as Function convert the string value of attribute into global fn calls bound to the webcomponent instance", async () => {
     expect.assertions(2)
 
