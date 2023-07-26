@@ -5,6 +5,7 @@
   ],
   "private": true,
   "scripts": {
+    "nx": "nx",
     "check-packages": "ts-node ./scripts/check-packages"
   },
   "eslintConfig": {
