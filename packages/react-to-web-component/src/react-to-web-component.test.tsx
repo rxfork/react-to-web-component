@@ -273,18 +273,22 @@ describe("react-to-web-component 1", () => {
     expect.assertions(4)
 
     type ObjectComponentProps = {
-      handleClick: (selected: string) => void
-      objectProp: { foo: string; bar: number[] }
+      handleClick: (selected?: string) => void
+      objectProp: { foo?: string; bar?: number[] }
     }
 
     function ObjectComponent({
-      objectProp,
-      handleClick,
+      objectProp = {},
+      handleClick = () => {
+        expect("default handleClick was called").toEqual(
+          "which should not happen",
+        )
+      },
     }: ObjectComponentProps) {
       return (
         <button
           onClick={() => {
-            handleClick(objectProp?.foo)
+            handleClick(objectProp.foo)
           }}
         >
           {objectProp?.bar?.join(",")}
@@ -295,6 +299,7 @@ describe("react-to-web-component 1", () => {
     const ObjectComponentPropDef = r2wc(ObjectComponent, {
       props: {
         objectProp: "object",
+        handleClick: "object",
       },
     })
 
@@ -315,13 +320,13 @@ describe("react-to-web-component 1", () => {
     await flushPromises()
 
     // @ts-expect-error
-    document.getElementsByTagName("object-component").objectProp = {
+    document.getElementsByTagName("object-component")[0].objectProp = {
       foo: "abc",
       bar: [2, 3],
     }
 
     // @ts-expect-error
-    const { objectProp } = document.getElementsByTagName("object-component")
+    const { objectProp } = document.getElementsByTagName("object-component")[0]
     expect(objectProp.foo).toEqual("abc")
     expect(objectProp.bar).toEqual([2, 3])
 
@@ -336,11 +341,11 @@ describe("react-to-web-component 1", () => {
       }, 1000)
 
       // @ts-expect-error
-      document.getElementsByTagName("object-component").handleClick = (
+      document.getElementsByTagName("object-component")[0].handleClick = (
         selected: string,
       ) => {
         clearTimeout(failUnlessCleared)
-        expect(selected).toEqual("foo")
+        expect(selected).toEqual("abc")
         r(true)
       }
 
