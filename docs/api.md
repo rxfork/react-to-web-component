@@ -7,12 +7,13 @@
 - `options` - An set of parameters.
 
   - `options.shadow` - Use shadow DOM rather than light DOM.
-  - `options.props` - Array of camelCasedProps to watch as String values or { [camelCasedProps]: "string" | "number" | "boolean" | "function" | "json" | "object" }
+  - `options.props` - Array of camelCasedProps to watch as String values or { [camelCasedProps]: "string" | "number" | "boolean" | "array" | "function" | "json" | "object" }
 
-    - When specifying Array or Object as the type, the string passed into the attribute must pass `JSON.parse()` requirements.
-    - When specifying Boolean as the type, "true", "1", "yes", "TRUE", and "t" are mapped to `true`. All strings NOT begining with t, T, 1, y, or Y will be `false`.
-    - When specifying Function as the type, the string passed into the attribute must be the name of a function on `window` (or `global`). The `this` context of the function will be the instance of the WebComponent / HTMLElement when called.
+    - When specifying `json` as the type, the string passed into the attribute must pass `JSON.parse()` requirements.
+    - When specifying `boolean` as the type, "true", "1", "yes", "TRUE", and "t" are mapped to `true`. All strings NOT begining with t, T, 1, y, or Y will be `false`.
+    - When specifying `function` as the type, the string passed into the attribute must be the name of a function on `window` (or `global`). The `this` context of the function will be the instance of the WebComponent / HTMLElement when called.
     - When specifying `object`, the prop will not be defined or appear as an attribute. It will only exist as a property. It may be assigned any value and is accessed via the property getter and setter.
+    - When specifying `array`, the prop will first be parsed as a JSON array, and if that fails, will be parsed as a list of comma separated string values.
     - If PropTypes are defined on the React component, the `options.props` will be ignored and the PropTypes will be used instead.
       However, we strongly recommend using `options.props` instead of PropTypes as it is usually not a good idea to use PropTypes in production.
     - If `options.props` is an array of string (prop names), the type of those props will be `String`.
@@ -108,11 +109,11 @@ console.log(document.body.firstElementChild.innerHTML) // "<h1>Hello, Jane</h1>"
 If `options.props` is an object, the keys are the camelCased React props and the values are any one of the following built in javascript types.
 This is the recommended way of passing props to r2wc.
 
-`"string" | "number" | "boolean" | "function" | "json"`
+`"string" | "number" | "boolean" |"array" | "function" | "json" | "object"`
 
 "json" can be an array or object. The string passed into the attribute must pass `JSON.parse()` requirements.
 
-### "string" | "number" | "boolean" | "function" | "json" props
+### "string" | "number" | "boolean" | "array" | "function" | "json" | "object" props
 
 ```js
 function AttrPropTypeCasting(props) {

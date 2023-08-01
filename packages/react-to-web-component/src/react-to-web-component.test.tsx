@@ -176,7 +176,7 @@ describe("react-to-web-component 1", () => {
   })
 
   it("options.props can specify and will convert the String attribute value into Number, Boolean, Array, and/or Object", async () => {
-    expect.assertions(12)
+    expect.assertions(15)
 
     type CastinProps = {
       stringProp: string
@@ -185,6 +185,7 @@ describe("react-to-web-component 1", () => {
       trueProp: boolean
       falseProp: boolean
       arrayProp: any[]
+      csvProp: string[]
       objProp: object
     }
 
@@ -197,6 +198,7 @@ describe("react-to-web-component 1", () => {
       trueProp,
       falseProp,
       arrayProp,
+      csvProp,
       objProp,
     }: CastinProps) {
       global.castedValues = {
@@ -206,6 +208,7 @@ describe("react-to-web-component 1", () => {
         trueProp,
         falseProp,
         arrayProp,
+        csvProp,
         objProp,
       }
 
@@ -219,7 +222,8 @@ describe("react-to-web-component 1", () => {
         floatProp: "number",
         trueProp: "boolean",
         falseProp: "boolean",
-        arrayProp: "json",
+        arrayProp: "array",
+        csvProp: "array",
         objProp: "json",
       },
     })
@@ -241,6 +245,7 @@ describe("react-to-web-component 1", () => {
         true-prop="true"
         false-prop="false"
         array-prop='[true, 100.25, "👽", { "aliens": "welcome" }]'
+        csv-prop='foo,bar'
         obj-prop='{ "very": "object", "such": "wow!" }'
       ></attr-type-casting>
     `
@@ -253,6 +258,7 @@ describe("react-to-web-component 1", () => {
       trueProp,
       falseProp,
       arrayProp,
+      csvProp,
       objProp,
     } = global.castedValues
     expect(stringProp).toEqual("iloveyou")
@@ -265,6 +271,9 @@ describe("react-to-web-component 1", () => {
     expect(arrayProp[1]).toEqual(100.25)
     expect(arrayProp[2]).toEqual("👽")
     expect(arrayProp[3].aliens).toEqual("welcome")
+    expect(csvProp.length).toEqual(2)
+    expect(csvProp[0]).toEqual("foo")
+    expect(csvProp[1]).toEqual("bar")
     expect(objProp.very).toEqual("object")
     expect(objProp.such).toEqual("wow!")
   })
