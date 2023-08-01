@@ -110,6 +110,8 @@ describe("core", () => {
       numProp: number
       boolProp: boolean
       arrProp: string[]
+      csvProp: string[]
+      emptycsvProp: string[]
       objProp: { [key: string]: string }
       funcProp: () => void
     }
@@ -119,6 +121,8 @@ describe("core", () => {
       numProp,
       boolProp,
       arrProp,
+      emptycsvProp,
+      csvProp,
       objProp,
       funcProp,
     }: Props) {
@@ -133,6 +137,9 @@ describe("core", () => {
           numProp: "number",
           boolProp: "boolean",
           arrProp: "array",
+          csvProp: "array",
+          emptycsvProp: "array",
+          emptycsvProp: "array",
           objProp: "json",
           funcProp: "function",
         },
@@ -154,7 +161,7 @@ describe("core", () => {
     customElements.define("test-button-element-property", ButtonElement)
 
     const body = document.body
-    body.innerHTML = `<test-button-element-property text='hello' obj-prop='{"greeting": "hello, world"}' arr-prop='["hello", "world"]' num-prop='240' bool-prop='true' func-prop='globalFn'>
+    body.innerHTML = `<test-button-element-property text='hello' obj-prop='{"greeting": "hello, world"}' arr-prop='["hello", "world"]' csv-prop=' hello,world ' emptycsv-prop='' num-prop='240' bool-prop='true' func-prop='globalFn'>
                       </test-button-element-property>`
 
     const element = body.querySelector(
@@ -167,6 +174,8 @@ describe("core", () => {
     expect(element.numProp).toBe(240)
     expect(element.boolProp).toBe(true)
     expect(element.arrProp).toEqual(["hello", "world"])
+    expect(element.csvProp).toEqual(["hello", "world"])
+    expect(element.emptycsvProp).toEqual([])
     expect(element.objProp).toEqual({ greeting: "hello, world" })
     expect(element.funcProp).toBeInstanceOf(Function)
     expect(element.funcProp()).toBe(true)
