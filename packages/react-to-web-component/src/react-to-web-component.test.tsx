@@ -219,7 +219,7 @@ describe("react-to-web-component 1", () => {
         floatProp: "number",
         trueProp: "boolean",
         falseProp: "boolean",
-        arrayProp: "json",
+        arrayProp: "array",
         objProp: "json",
       },
     })

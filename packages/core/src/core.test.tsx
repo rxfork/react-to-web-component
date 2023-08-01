@@ -132,7 +132,7 @@ describe("core", () => {
           text: "string",
           numProp: "number",
           boolProp: "boolean",
-          arrProp: "json",
+          arrProp: "array",
           objProp: "json",
           funcProp: "function",
         },
