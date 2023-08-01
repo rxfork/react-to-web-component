@@ -176,7 +176,7 @@ describe("react-to-web-component 1", () => {
   })
 
   it("options.props can specify and will convert the String attribute value into Number, Boolean, Array, and/or Object", async () => {
-    expect.assertions(14)
+    expect.assertions(15)
 
     type CastinProps = {
       stringProp: string
