@@ -12,10 +12,10 @@
     - When specifying Array or Object as the type, the string passed into the attribute must pass `JSON.parse()` requirements.
     - When specifying Boolean as the type, "true", "1", "yes", "TRUE", and "t" are mapped to `true`. All strings NOT begining with t, T, 1, y, or Y will be `false`.
     - When specifying Function as the type, the string passed into the attribute must be the name of a function on `window` (or `global`). The `this` context of the function will be the instance of the WebComponent / HTMLElement when called.
+    - When specifying `object`, the prop will not be defined or appear as an attribute. It will only exist as a property. It may be assigned any value and is accessed via the property getter and setter.
     - If PropTypes are defined on the React component, the `options.props` will be ignored and the PropTypes will be used instead.
       However, we strongly recommend using `options.props` instead of PropTypes as it is usually not a good idea to use PropTypes in production.
     - If `options.props` is an array of string (prop names), the type of those props will be `String`.
-    - When specifying `object`, the prop will not be defined or appear as an attribute. It will only exist as a property.
 
   A new class inheriting from `HTMLElement` is
   returned. This class is of type CustomElementConstructor can be directly passed to `customElements.define` as follows:
