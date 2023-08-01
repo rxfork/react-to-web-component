@@ -1,6 +1,7 @@
 import string from "./string"
 import number from "./number"
 import boolean from "./boolean"
+import array from "./array"
 import function_ from "./function"
 import json from "./json"
 import object_ from "./object"
@@ -14,6 +15,7 @@ const transforms = {
   string,
   number,
   boolean,
+  array,
   function: function_,
   json,
   object: object_,

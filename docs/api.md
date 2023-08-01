@@ -7,7 +7,7 @@
 - `options` - An set of parameters.
 
   - `options.shadow` - Use shadow DOM rather than light DOM.
-  - `options.props` - Array of camelCasedProps to watch as String values or { [camelCasedProps]: "string" | "number" | "boolean" | "function" | "json" | "object" }
+  - `options.props` - Array of camelCasedProps to watch as String values or { [camelCasedProps]: "string" | "number" | "boolean" | "array" | "function" | "json" | "object" }
 
     - When specifying `json` as the type, the string passed into the attribute must pass `JSON.parse()` requirements.
     - When specifying `boolean` as the type, "true", "1", "yes", "TRUE", and "t" are mapped to `true`. All strings NOT begining with t, T, 1, y, or Y will be `false`.
@@ -109,11 +109,11 @@ console.log(document.body.firstElementChild.innerHTML) // "<h1>Hello, Jane</h1>"
 If `options.props` is an object, the keys are the camelCased React props and the values are any one of the following built in javascript types.
 This is the recommended way of passing props to r2wc.
 
-`"string" | "number" | "boolean" | "function" | "json"`
+`"string" | "number" | "boolean" |"array" | "function" | "json" | "object"`
 
 "json" can be an array or object. The string passed into the attribute must pass `JSON.parse()` requirements.
 
-### "string" | "number" | "boolean" | "function" | "json" props
+### "string" | "number" | "boolean" | "array" | "function" | "json" | "object" props
 
 ```js
 function AttrPropTypeCasting(props) {
