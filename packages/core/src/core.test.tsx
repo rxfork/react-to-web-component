@@ -139,7 +139,6 @@ describe("core", () => {
           arrProp: "array",
           csvProp: "array",
           emptycsvProp: "array",
-          emptycsvProp: "array",
           objProp: "json",
           funcProp: "function",
         },
