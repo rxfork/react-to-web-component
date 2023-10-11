@@ -11,7 +11,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["react", "react-dom", "@rxfork/r2wc-core"],
+      external: ["react", "react-dom/client", "@rxfork/r2wc-core"],
     },
   },
   plugins: [dts()],
